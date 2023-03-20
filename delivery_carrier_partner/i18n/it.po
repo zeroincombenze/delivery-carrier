@@ -18,7 +18,7 @@ msgstr ""
 
 #. module: delivery_carrier_partner
 #: model:ir.model,name:delivery_carrier_partner.model_delivery_carrier
-msgid "Shipping Methods"
+msgid "Delivery Methods"
 msgstr ""
 
 #. module: delivery_carrier_partner

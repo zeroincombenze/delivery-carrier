@@ -107,7 +107,7 @@ msgstr ""
 "carrier_id.name}"
 
 #. module: delivery_state
-#: model:ir.model.fields.selection,name:delivery_state.selection__stock_picking__delivery_state__canceled_shipment
+#: selection:stock.picking,delivery_state:0
 msgid "Canceled shipment"
 msgstr "Envío cancelado"
 
@@ -117,7 +117,17 @@ msgid "Carrier State"
 msgstr "Estado del transportista"
 
 #. module: delivery_state
-#: model:ir.model.fields.selection,name:delivery_state.selection__stock_picking__delivery_state__customer_delivered
+#: model:ir.model,name:delivery_state.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: delivery_state
+#: model:ir.model,name:delivery_state.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de Configuración"
+
+#. module: delivery_state
+#: selection:stock.picking,delivery_state:0
 msgid "Customer delivered"
 msgstr "Entregado a cliente"
 
@@ -127,37 +137,29 @@ msgid "Delivery Date"
 msgstr "Fecha de entrega"
 
 #. module: delivery_state
-#: model:ir.model.fields,field_description:delivery_state.field_delivery_carrier__display_name
-#: model:ir.model.fields,field_description:delivery_state.field_stock_picking__display_name
-msgid "Display Name"
-msgstr ""
+#: model:ir.model,name:delivery_state.model_delivery_carrier
+msgid "Delivery Methods"
+msgstr "Método de envío"
 
 #. module: delivery_state
-#: model:ir.model.fields,field_description:delivery_state.field_delivery_carrier__id
-#: model:ir.model.fields,field_description:delivery_state.field_stock_picking__id
-msgid "ID"
-msgstr ""
-
-#. module: delivery_state
-#: model:ir.model.fields.selection,name:delivery_state.selection__stock_picking__delivery_state__in_transit
+#: selection:stock.picking,delivery_state:0
 msgid "In transit"
 msgstr "En tránsito"
 
 #. module: delivery_state
-#: model:ir.model.fields.selection,name:delivery_state.selection__stock_picking__delivery_state__incidence
+#: selection:stock.picking,delivery_state:0
 msgid "Incidence"
 msgstr "Incidencia"
 
 #. module: delivery_state
-#: model:ir.model.fields,field_description:delivery_state.field_delivery_carrier____last_update
-#: model:ir.model.fields,field_description:delivery_state.field_stock_picking____last_update
-msgid "Last Modified on"
-msgstr ""
+#: model:ir.model.fields,field_description:delivery_state.field_res_config_settings__send_delivery_confirmation
+msgid "Send Delivery Confirmation"
+msgstr "Enviar confirmación de envío"
 
 #. module: delivery_state
-#: model:ir.model.fields.selection,name:delivery_state.selection__stock_picking__delivery_state__no_update
-msgid "No more updates from carrier"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:delivery_state.res_config_settings_view_form
+msgid "Send automatic tracking info to customer"
+msgstr "Enviar automáticamente información del seguimiento al cliente"
 
 #. module: delivery_state
 #: model:ir.model.fields,field_description:delivery_state.field_stock_picking__date_shipped
@@ -165,12 +167,7 @@ msgid "Shipment Date"
 msgstr "Fecha de envío"
 
 #. module: delivery_state
-#: model:ir.model,name:delivery_state.model_delivery_carrier
-msgid "Shipping Methods"
-msgstr ""
-
-#. module: delivery_state
-#: model:ir.model.fields.selection,name:delivery_state.selection__stock_picking__delivery_state__shipping_recorded_in_carrier
+#: selection:stock.picking,delivery_state:0
 msgid "Shipping recorded in carrier"
 msgstr "Envío registrado en el transportista"
 
@@ -202,35 +199,24 @@ msgid "Update tracking state"
 msgstr "Actualizar seguimiento"
 
 #. module: delivery_state
-#: model:ir.model.fields.selection,name:delivery_state.selection__stock_picking__delivery_state__warehouse_delivered
+#: selection:stock.picking,delivery_state:0
 msgid "Warehouse delivered"
 msgstr "Entregado por almacén"
 
-#~ msgid "Companies"
-#~ msgstr "Compañías"
+#. module: delivery_state
+#: model:ir.model.fields,field_description:delivery_state.field_res_company__send_delivery_confirmation
+msgid ""
+"When the delivery is done send a confirmation email to the customer with the "
+"tracking number."
+msgstr ""
+"Cuando se confirme el albarán, enviar un correo de confirmación al cliente "
+"con el número de seguimiento."
 
-#~ msgid "Config Settings"
-#~ msgstr "Opciones de Configuración"
-
-#~ msgid "Delivery Methods"
-#~ msgstr "Método de envío"
-
-#~ msgid "Send Delivery Confirmation"
-#~ msgstr "Enviar confirmación de envío"
-
-#~ msgid "Send automatic tracking info to customer"
-#~ msgstr "Enviar automáticamente información del seguimiento al cliente"
-
-#~ msgid ""
-#~ "When the delivery is done send a confirmation email to the customer with "
-#~ "the tracking number."
-#~ msgstr ""
-#~ "Cuando se confirme el albarán, enviar un correo de confirmación al "
-#~ "cliente con el número de seguimiento."
-
-#~ msgid ""
-#~ "When the picking is confirmed, send an automatic delivery tracking\n"
-#~ "                            information email."
-#~ msgstr ""
-#~ "Cuando se valide el albarán, enviar un correo automático con la "
-#~ "información de seguimiento del envío."
+#. module: delivery_state
+#: model_terms:ir.ui.view,arch_db:delivery_state.res_config_settings_view_form
+msgid ""
+"When the picking is confirmed, send an automatic delivery tracking\n"
+"                            information email."
+msgstr ""
+"Cuando se valide el albarán, enviar un correo automático con la información "
+"de seguimiento del envío."

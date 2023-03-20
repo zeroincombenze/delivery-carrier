@@ -6,4 +6,3 @@
 * Ismael Calvo <ismael.calvo@factorlibre.com>
 * Dave Lasley <dave@laslabs.com>
 * Timothée Ringeard <timothee.ringeard@camptocamp.com>
-* Pimolnat Suntian <pimolnats@ecosoft.co.th>

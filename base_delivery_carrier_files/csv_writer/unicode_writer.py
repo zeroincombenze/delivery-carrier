@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 # CSV writer from python doc
-import codecs
 import csv
+import codecs
+
 from io import StringIO
 
 
@@ -20,7 +22,7 @@ class UnicodeWriter(object):
 
     def writerow(self, row):
         # we ensure that we do not try to encode None or bool
-        row = [x or "" for x in row]
+        row = [x or '' for x in row]
         self.writer.writerow(row)
         # Fetch output from the queue ...
         data = self.queue.getvalue()

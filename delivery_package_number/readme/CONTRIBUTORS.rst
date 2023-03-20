@@ -2,4 +2,3 @@
 
   * Pedro M. Baeza
   * David Vidal
-  * Marçal Isern

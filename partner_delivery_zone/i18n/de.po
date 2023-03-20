@@ -101,8 +101,7 @@ msgstr "Auslieferungszone des Partners"
 
 #. module: partner_delivery_zone
 #: model:ir.model,name:partner_delivery_zone.model_sale_order
-#, fuzzy
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr "Verkaufsauftrag"
 
 #. module: partner_delivery_zone

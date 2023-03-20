@@ -9,8 +9,8 @@
                     <group name="config">
                         <field name="carrier_id" widget="selection" />
                         <field name="delivery_date" />
-                        <field name="min_hour" widget="float_time" />
-                        <field name="max_hour" widget="float_time" />
+                        <field name="min_hour" widget="float_time"/>
+                        <field name="max_hour" widget="float_time"/>
                     </group>
                 </group>
                 <group attrs="{'invisible': [('state', '!=', 'done')]}">
@@ -31,10 +31,11 @@
             </form>
         </field>
     </record>
-    <record id="action_delivery_cttexpress_pickup_wizard" model="ir.actions.act_window">
-        <field name="name">CTT Express Pickup Request</field>
-        <field name="res_model">cttexpress.pickup.wizard</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-    </record>
+    <act_window
+        id="action_delivery_cttexpress_pickup_wizard"
+        name="CTT Express Pickup Request"
+        res_model="cttexpress.pickup.wizard"
+        view_mode="form"
+        target="new"
+    />
 </odoo>

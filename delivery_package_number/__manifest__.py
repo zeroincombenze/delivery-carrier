@@ -3,14 +3,16 @@
 {
     "name": "Stock Picking Package Number",
     "summary": "Set or compute number of packages for a picking",
-    "version": "14.0.1.1.0",
+    "version": "12.0.1.0.0",
     "category": "Delivery",
     "website": "https://github.com/OCA/delivery-carrier",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "application": False,
-    "depends": ["delivery"],
+    "depends": [
+        "delivery",
+    ],
     "data": [
         "views/stock_picking_views.xml",
         "wizard/stock_immediate_transfer_views.xml",

@@ -21,15 +21,14 @@ class CarrierLabelCase(TransactionCase):
         """Create a sale order and deliver the picking"""
         self.order = self.env["sale.order"].create(self._sale_order_data())
         for product in self.order.mapped("order_line.product_id"):
-            self.env["stock.quant"].with_context(inventory_mode=True).create(
+            self.env["stock.change.product.qty"].create(
                 {
                     "product_id": product.id,
-                    "location_id": self.order.warehouse_id.lot_stock_id.id,
-                    "inventory_quantity": sum(
+                    "new_quantity": sum(
                         self.order.mapped("order_line.product_uom_qty")
                     ),
                 }
-            )
+            ).change_product_qty()
         self.order.action_confirm()
         self.picking = self.order.picking_ids
         self.picking.write(self._picking_data())
@@ -57,6 +56,7 @@ class CarrierLabelCase(TransactionCase):
         """Return a values dict to create a partner"""
         return {
             "name": "Carrier label test customer",
+            "customer": True,
         }
 
     def _order_line_data(self):
@@ -94,5 +94,5 @@ class CarrierLabelCase(TransactionCase):
 class TestCarrierLabel(CarrierLabelCase):
     def test_labels(self):
         """Test if labels are created by the button"""
-        self.picking.send_to_shipper()
+        self.picking.action_generate_carrier_label()
         self._assert_labels()

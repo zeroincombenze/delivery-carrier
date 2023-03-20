@@ -8,5 +8,4 @@ In order to send automatic notifications to the customer when the picking is
 confirmed:
 
   #. Go to *Inventory > Configuration > Settings*.
-  #. Enable the option *Email Confirmation*.
-  #. Choose the template "Delivery State Notification to Customer".
+  #. Enable the option *Send Delivery Confirmation*.

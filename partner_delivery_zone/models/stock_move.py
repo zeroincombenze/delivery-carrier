@@ -4,7 +4,7 @@ from odoo import models
 
 
 class StockMove(models.Model):
-    _inherit = "stock.move"
+    _inherit = 'stock.move'
 
     def get_original_move(self):
         if self.move_dest_ids:
@@ -16,10 +16,7 @@ class StockMove(models.Model):
         original_move = self.get_original_move()
         zone_id = original_move.sale_line_id.order_id.delivery_zone_id.id
         if not zone_id:
-            zone_id = (
-                self.env["res.partner"]
-                .browse(vals.get("partner_id", False))
-                .delivery_zone_id.id
-            )
-        vals["delivery_zone_id"] = zone_id
+            zone_id = self.env['res.partner'].browse(
+                vals.get('partner_id', False)).delivery_zone_id.id
+        vals['delivery_zone_id'] = zone_id
         return vals

@@ -1,11 +1,13 @@
 # Copyright 2022 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from lxml import etree
+
 import logging
 
-from lxml import etree
 from zeep import Client
 from zeep.helpers import serialize_object
 from zeep.plugins import HistoryPlugin
+
 
 _logger = logging.getLogger(__name__)
 
@@ -17,7 +19,6 @@ CTTEXPRESS_API_URL = {
 
 def log_request(method):
     """Decorator to write raw request/response in the CTT request object"""
-
     def wrapper(*args, **kwargs):
         res = method(*args, **kwargs)
         try:
@@ -35,15 +36,13 @@ def log_request(method):
         except Exception:
             return res
         return res
-
     return wrapper
 
 
 class CTTExpressRequest:
     """Interface between CTT Express SOAP API and Odoo recordset.
-    Abstract CTT Express API Operations to connect them with Odoo
+       Abstract CTT Express API Operations to connect them with Odoo
     """
-
     def __init__(self, user, password, agency, customer, contract, prod=False):
         self.user = user
         self.password = password
@@ -110,7 +109,7 @@ class CTTExpressRequest:
         return (
             self._format_error(response.ErrorCodes),
             self._format_document(response.Documents),
-            response.ShippingCode,
+            response.ShippingCode
         )
 
     @log_request
@@ -126,7 +125,11 @@ class CTTExpressRequest:
         response = self.client.service.GetTracking(**values)
         return (
             self._format_error(response.ErrorCodes),
-            (response.Tracking and serialize_object(response.Tracking.Tracking) or []),
+            (
+                response.Tracking
+                and serialize_object(response.Tracking.Tracking)
+                or []
+            )
         )
 
     @log_request
@@ -142,7 +145,7 @@ class CTTExpressRequest:
         response = self.client.service.GetDocuments(**values)
         return (
             self._format_error(response.ErrorCodes),
-            self._format_document(response.Documents),
+            self._format_document(response.Documents)
         )
 
     @log_request
@@ -152,7 +155,7 @@ class CTTExpressRequest:
         document_code="LASER_MAIN_ES",
         model_code="SINGLE",
         kind_code="PDF",
-        offset=0,
+        offset=0
     ):
         """Get shipping codes documents
 
@@ -182,7 +185,7 @@ class CTTExpressRequest:
         response = self.client.service.GetDocumentsV2(**values)
         return (
             self._format_error(response.ErrorCodes),
-            self._format_document(response.Documents),
+            self._format_document(response.Documents)
         )
 
     @log_request
@@ -199,7 +202,7 @@ class CTTExpressRequest:
             [
                 (x.ShippingTypeCode, x.ShippingTypeDescription)
                 for x in response.Services.ClientShippingType
-            ],
+            ]
         )
 
     @log_request
@@ -215,7 +218,11 @@ class CTTExpressRequest:
 
     @log_request
     def report_shipping(
-        self, process_code="ODOO", document_type="XLSX", from_date=None, to_date=None
+        self,
+        process_code="ODOO",
+        document_type="XLSX",
+        from_date=None,
+        to_date=None
     ):
         """Get the shippings manifest. Mapped to API's ReportShipping
 
@@ -232,12 +239,12 @@ class CTTExpressRequest:
             ProcessCode=process_code,
             DocumentKindCode=document_type,
             FromDate=from_date,
-            ToDate=to_date,
+            ToDate=to_date
         )
         response = self.client.service.ReportShipping(**values)
         return (
             self._format_error(response.ErrorCodes),
-            self._format_document(response.Documents),
+            self._format_document(response.Documents)
         )
 
     @log_request
@@ -271,4 +278,7 @@ class CTTExpressRequest:
             }
         )
         response = self.client.service.CreateRequest(**values)
-        return (self._format_error(response.ErrorCodes), response.RequestShippingCode)
+        return (
+            self._format_error(response.ErrorCodes),
+            response.RequestShippingCode
+        )
