@@ -13,6 +13,7 @@
     'installable': True,
     'depends': [
         'delivery',
+        'sale',
     ],
     'data': [
         'views/delivery_view.xml',
