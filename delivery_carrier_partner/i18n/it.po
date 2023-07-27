@@ -18,19 +18,16 @@ msgstr ""
 
 #. module: delivery_carrier_partner
 #: model:ir.model,name:delivery_carrier_partner.model_delivery_carrier
-msgid "Shipping Methods"
-msgstr ""
+msgid "Carrier"
+msgstr "Vettore"
 
 #. module: delivery_carrier_partner
-#: model:ir.model.fields,help:delivery_carrier_partner.field_delivery_carrier__partner_id
+#: model:ir.model.fields,help:delivery_carrier_partner.field_delivery_carrier_partner_id
 msgid "The partner that is doing the delivery service."
 msgstr "Il partner che effettua il servizio di consegna."
 
 #. module: delivery_carrier_partner
-#: model:ir.model.fields,field_description:delivery_carrier_partner.field_delivery_carrier__partner_id
+#: model:ir.model.fields,field_description:delivery_carrier_partner.field_delivery_carrier_partner_id
 #, fuzzy
-msgid "Transporter"
+msgid "Transporter Company"
 msgstr "Trasportatore"
-
-#~ msgid "Carrier"
-#~ msgstr "Vettore"

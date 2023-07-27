@@ -1,13 +1,18 @@
+# -*- coding: utf-8 -*-
 # Copyright 2012 Camptocamp SA
 # Author: Guewen Baconnier
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import datetime
 import string
-from io import StringIO
+import datetime
+try:
+    import cStringIO as StringIO
+except ImportError:
+    import StringIO
 
 
 class CarrierFileGenerator(object):
+
     def __init__(self, carrier_name):
         self.carrier_name = carrier_name
 
@@ -17,8 +22,8 @@ class CarrierFileGenerator(object):
 
     @staticmethod
     def sanitize_filename(name):
-        valid_chars = "-_.() {}{}".format(string.ascii_letters, string.digits)
-        return "".join(c for c in name if c in valid_chars)
+        valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
+        return ''.join(c for c in name if c in valid_chars)
 
     @staticmethod
     def _filename_date(timestamp=None):
@@ -31,7 +36,7 @@ class CarrierFileGenerator(object):
         :return: a date as str
         """
         date = timestamp or datetime.datetime.now()
-        return date.strftime("%Y%m%d_%H%M%S")
+        return date.strftime('%Y%m%d_%H%M%S')
 
     def generate_files(self, pickings, configuration):
         """
@@ -51,7 +56,7 @@ class CarrierFileGenerator(object):
         else:
             return self._generate_files_single(pickings, configuration)
 
-    def _get_filename_single(self, picking, configuration, extension="csv"):
+    def _get_filename_single(self, picking, configuration, extension='csv'):
         """
         Generate the filename for a picking when one file is
         generated for one picking
@@ -63,9 +68,9 @@ class CarrierFileGenerator(object):
         :param str extension: extension of the file to create, csv by default
         :return: a string with the name of the file
         """
-        return "{}_{}.{}".format(picking.name, self._filename_date(), extension)
+        return "%s_%s.%s" % (picking.name, self._filename_date(), extension)
 
-    def _get_filename_grouped(self, configuration, extension="csv"):
+    def _get_filename_grouped(self, configuration, extension='csv'):
         """
         Generate the filename for a file which group many pickings.
         When pickings are grouped in one file, the filename cannot
@@ -77,7 +82,7 @@ class CarrierFileGenerator(object):
         :param str extension: extension of the file to create, csv by default
         :return: a string with the name of the file
         """
-        return "{}_{}.{}".format("out", self._filename_date(), extension)
+        return "%s_%s.%s" % ('out', self._filename_date(), extension)
 
     def _get_rows(self, picking, configuration):
         """
@@ -117,9 +122,10 @@ class CarrierFileGenerator(object):
                                             the file to generate
         :return: content of the file
         """
-        file_handle = StringIO()
+        file_handle = StringIO.StringIO()
         try:
-            file_handle = self._write_rows(file_handle, rows, configuration)
+            file_handle = self._write_rows(file_handle,
+                                           rows, configuration)
             file_content = file_handle.getvalue()
         finally:
             file_handle.close()

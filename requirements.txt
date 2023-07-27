@@ -1,7 +1,0 @@
-# generated from manifests external_dependencies
-dicttoxml
-PyPDF2
-roulier
-unidecode
-xmltodict
-zeep
